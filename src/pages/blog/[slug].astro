@@ -1,0 +1,20 @@
+---
+import BlogLayout from "../../layouts/BlogLayout.astro";
+
+export async function getStaticPaths() {
+  const posts = await fetch(`http://localhost:1337/api/posts`).then((res) =>
+    res.json()
+  );
+  return posts.map((post: any) => ({ params: { slug: post.slug } }));
+}
+
+const { slug } = Astro.props;
+const postItem = await fetch(
+  `http://localhost:1337api/posts?slug=${slug}`
+).then((res) => res.json());
+---
+
+<BlogLayout title="Blog">
+  miao
+  <!-- <SingleBlogItem post={postItem[0]}/> -->
+</BlogLayout>
