@@ -1,20 +1,25 @@
 ---
 import BlogLayout from "../../layouts/BlogLayout.astro";
+import getApiUrl from "../../utils/getApiUrl";
+import SingleBlogItem from "../../components/SingleBlogItem";
 
-export async function getStaticPaths() {
-  const posts = await fetch(`http://localhost:1337/api/posts`).then((res) =>
-    res.json()
-  );
-  return posts.map((post: any) => ({ params: { slug: post.slug } }));
-}
+// export async function getStaticPaths() {
+//   // --`${getApiUrl()}/api/posts?populate=*`
+//   const posts = await fetch(`${getApiUrl()}/api/posts`).then((res) =>
+//     res.json()
+//   );
+//   return posts.map((post: any) => ({ params: { slug: post.slug } }));
+// }
 
-const { slug } = Astro.props;
-const postItem = await fetch(
-  `http://localhost:1337api/posts?slug=${slug}`
-).then((res) => res.json());
+const { slug } = Astro.params;
+
+const url = `${getApiUrl()}/api/posts?filters[slug][$eq]=${slug}&populate=*`;
+
+const { data: postItem } = await fetch(url).then((res) => res.json());
 ---
 
-<BlogLayout title="Blog">
-  miao
-  <!-- <SingleBlogItem post={postItem[0]}/> -->
+<BlogLayout title={slug || "Blog"}>
+  <div>slug = {slug}</div>
+
+  <SingleBlogItem post={postItem[0]} />
 </BlogLayout>

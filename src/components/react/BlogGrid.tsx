@@ -26,7 +26,12 @@ const BlogGrid = ({ posts }: any) => {
               <div className="badge badge-outline">
                 {post.attributes.readingTime}
               </div>
-              <button className="btn btn-primary">Leggi articolo</button>
+              <a
+                href={"/blog/" + post.attributes.slug}
+                className="btn btn-primary"
+              >
+                Leggi articolo
+              </a>
             </div>
           </div>
         </li>
