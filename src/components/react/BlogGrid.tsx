@@ -2,15 +2,15 @@ import getApiUrl from "../../utils/getApiUrl";
 
 const BlogGrid = ({ posts }: any) => {
   return (
-    <ul className="grid lg:grid-cols-2 gap-6">
+    <ul className="grid lg:grid-cols-3 gap-6">
       {posts.map((post: any, idx: number) => (
         <li
           key={idx}
-          className="card card-compact w-full lg:w-96 bg-base-100 shadow-xl"
+          className="card card-compact w-full lg:w-80 bg-base-100 shadow-xl ring-1 ring-slate-700/20"
         >
           <figure>
             <img
-              className="object-contain w-full h-48"
+              className="object-cover w-full h-48"
               src={
                 // getApiUrl() +
                 `${post.attributes.featuredImage.data.attributes.url}`
