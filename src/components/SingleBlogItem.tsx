@@ -13,7 +13,7 @@ export default function SingleBlog({ post }: any) {
 
   return (
     <>
-      <div className="my-4 text-center">
+      <div className="mt-16 mb-4 text-center">
         <h1 className="text-center text-4xl leading-tight text-gray-900 my-4 font-bold">
           {title}
         </h1>
@@ -38,9 +38,9 @@ export default function SingleBlog({ post }: any) {
           <span>{readingTime}</span>
         </div>
       </div>
-      <div className="rounded-md h-56 w-full overflow-hidden">
+      <div className="rounded-md h-96 w-full max-w-5xl mx-auto overflow-hidden">
         <img
-          className="object-cover w-full h-full"
+          className="object-cover object-top w-full h-full"
           src={
             featuredImage
               ? `${featuredImage.data.attributes.url}`
@@ -48,7 +48,7 @@ export default function SingleBlog({ post }: any) {
           }
         />
       </div>
-      <article className="prose  max-w-full w-full my-4">
+      <article className="prose mx-auto max-w-5xl w-full my-4 px-2">
         <ReactMarkdown
         // components={{
         //     img: (props) => {
