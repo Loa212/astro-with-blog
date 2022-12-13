@@ -1,34 +1,50 @@
 ---
 import { Close } from "../assets/icons";
+import LoaLogo from "../assets/loalogo2.png";
+
+const navLinks = [
+  { name: "Blog", href: "/blog" },
+  { name: "Navbar Item 2", href: "#" },
+];
 ---
 
 <div class="drawer drawer-end">
   <input id="my-drawer-3" type="checkbox" class="drawer-toggle" />
   <div class="drawer-content flex flex-col">
     <!-- Navbar -->
-    <div class="fixed z-50 w-full navbar bg-white/40">
-      <div class="flex-1 px-2">Navbar Title</div>
-      <div class="flex-none lg:hidden">
-        <label for="my-drawer-3" class="btn btn-square btn-ghost">
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            fill="none"
-            viewBox="0 0 24 24"
-            class="inline-block w-6 h-6 stroke-current"
-            ><path
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              stroke-width="2"
-              d="M4 6h16M4 12h16M4 18h16"></path>
-          </svg>
-        </label>
-      </div>
-      <div class="flex-none hidden lg:block">
-        <ul class="menu menu-horizontal">
-          <!-- Navbar menu content here -->
-          <li><a href="/blog">Blog</a></li>
-          <li><a>Navbar Item 2</a></li>
-        </ul>
+    <div class="fixed z-50 w-full navbar bg-white border-b border-slate-700/20">
+      <div class="w-full max-w-7xl mx-auto">
+        <a href="/" class="flex-1 px-2 flex items-center justify-start gap-2">
+          <img class="h-8 w-8" src={LoaLogo} alt="loa-logo" />
+          Loa212</a
+        >
+        <div class="flex-none lg:hidden">
+          <label for="my-drawer-3" class="btn btn-square btn-ghost">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              class="inline-block w-6 h-6 stroke-current"
+              ><path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M4 6h16M4 12h16M4 18h16"></path>
+            </svg>
+          </label>
+        </div>
+        <div class="flex-none hidden lg:block">
+          <ul class="menu menu-horizontal">
+            <!-- Navbar menu content here -->
+            {
+              navLinks.map((link) => (
+                <li>
+                  <a href={link.href}>{link.name}</a>
+                </li>
+              ))
+            }
+          </ul>
+        </div>
       </div>
     </div>
     <!-- Page content here -->
@@ -47,8 +63,13 @@ import { Close } from "../assets/icons";
         <Close size={16} />
       </label>
 
-      <li><a>Sidebar Item 1</a></li>
-      <li><a>Sidebar Item 2</a></li>
+      {
+        navLinks.map((link) => (
+          <li>
+            <a href={link.href}>{link.name}</a>
+          </li>
+        ))
+      }
     </ul>
   </div>
 </div>
