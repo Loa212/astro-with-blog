@@ -11,9 +11,14 @@ export default function SingleBlog({ post }: any) {
     author,
   } = post.attributes || {};
 
+  const authorAvatarUrl =
+    author?.data?.attributes?.avatar?.data?.attributes?.url || null;
+
+  const authorName = author?.data?.attributes?.name || "";
+
   return (
-    <>
-      <div className="mt-16 mb-4 text-center">
+    <div className="max-w-5xl mx-auto">
+      <div className="mt-16 mb-4 text-center ">
         <h1 className="text-center text-4xl leading-tight text-gray-900 my-4 font-bold">
           {title}
         </h1>
@@ -22,23 +27,23 @@ export default function SingleBlog({ post }: any) {
             <img
               className="inline-block h-8 w-8 rounded-full ring-2 ring-white"
               src={
-                author?.bioImage?.url
-                  ? `http://localhost:1337${author?.avatar?.url}`
+                authorAvatarUrl
+                  ? authorAvatarUrl
                   : "https://via.placeholder.com/1080"
               }
               alt="author picture"
             />
             <p className="font-medium text-xs text-gray-600 cursor-pointer">
-              {author?.name}
+              {authorName}
             </p>
           </span>
           <span>&middot;</span>
           <span>{format(new Date(createdAt), "dd/MMM/yyyy - hh:mmaaa")}</span>
           <span>&middot;</span>
-          <span>{readingTime}</span>
+          <span>{readingTime} read</span>
         </div>
       </div>
-      <div className="rounded-md h-96 w-full max-w-5xl mx-auto overflow-hidden">
+      <div className="rounded-md h-96 w-full  overflow-hidden">
         <img
           className="object-cover object-top w-full h-full"
           src={
@@ -63,6 +68,6 @@ export default function SingleBlog({ post }: any) {
           {content}
         </ReactMarkdown>
       </article>
-    </>
+    </div>
   );
 }

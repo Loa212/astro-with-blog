@@ -3,17 +3,9 @@ import BlogLayout from "../../layouts/BlogLayout.astro";
 import getApiUrl from "../../utils/getApiUrl";
 import SingleBlogItem from "../../components/SingleBlogItem";
 
-// export async function getStaticPaths() {
-//   // --`${getApiUrl()}/api/posts?populate=*`
-//   const posts = await fetch(`${getApiUrl()}/api/posts`).then((res) =>
-//     res.json()
-//   );
-//   return posts.map((post: any) => ({ params: { slug: post.slug } }));
-// }
-
 const { slug } = Astro.params;
 
-const url = `${getApiUrl()}/api/posts?filters[slug][$eq]=${slug}&populate=*`;
+const url = `${getApiUrl()}/api/posts?filters[slug][$eq]=${slug}&populate[0]=featuredImage&populate[1]=author&populate[3]=author.avatar`;
 
 const { data: postItem } = await fetch(url).then((res) => res.json());
 ---

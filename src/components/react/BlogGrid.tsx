@@ -1,3 +1,4 @@
+import clipText from "../../utils/clipText";
 import getApiUrl from "../../utils/getApiUrl";
 
 const BlogGrid = ({ posts }: any) => {
@@ -11,15 +12,12 @@ const BlogGrid = ({ posts }: any) => {
           <figure>
             <img
               className="object-cover w-full h-48"
-              src={
-                // getApiUrl() +
-                `${post.attributes.featuredImage.data.attributes.url}`
-              }
+              src={`${post.attributes.featuredImage.data.attributes.url}`}
               alt={post.attributes.featuredImage.data.attributes.name}
             />
           </figure>
           <div className="card-body">
-            <h2 className="card-title">{post.attributes.title}</h2>
+            <h2 className="card-title">{clipText(post.attributes.name, 24)}</h2>
             <p>{post.attributes.excerpt}</p>
 
             <div className="card-actions flex items-center justify-between">
