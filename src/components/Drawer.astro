@@ -1,6 +1,7 @@
 ---
 import { Close } from "../assets/icons";
 import LoaLogo from "../assets/loalogo2.png";
+// import ThemeSwitcher from "../components/react/ThemeSwitcher";
 
 const navLinks = [
   { name: "Blog", href: "/blog" },
@@ -12,7 +13,9 @@ const navLinks = [
   <input id="my-drawer-3" type="checkbox" class="drawer-toggle" />
   <div class="drawer-content flex flex-col">
     <!-- Navbar -->
-    <div class="fixed z-50 w-full navbar bg-white border-b border-slate-700/20">
+    <div
+      class="sticky inset-y-0 -top-0.5 z-50 w-full navbar bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-white border-b border-slate-700/20 dark:border-slate-100/10"
+    >
       <div class="w-full max-w-7xl mx-auto">
         <a href="/" class="flex-1 px-2 flex items-center justify-start gap-2">
           <img class="h-8 w-8" src={LoaLogo} alt="loa-logo" />
@@ -38,11 +41,12 @@ const navLinks = [
             <!-- Navbar menu content here -->
             {
               navLinks.map((link) => (
-                <li>
+                <li class="underline underline-offset-4 decoration-1 hover:text-white hover:decoration-2 decoration-slate-400 hover:decoration-slate-200">
                   <a href={link.href}>{link.name}</a>
                 </li>
               ))
             }
+            <!-- <ThemeSwitcher /> -->
           </ul>
         </div>
       </div>
@@ -54,7 +58,9 @@ const navLinks = [
   </div>
   <div class="drawer-side">
     <label for="my-drawer-3" class="drawer-overlay"></label>
-    <ul class="menu p-4 w-80 bg-base-100">
+    <ul
+      class="menu p-4 w-80 bg-slate-100 dark:bg-slate-800 text-slate-800 dark:text-slate-100"
+    >
       <!-- Sidebar content here -->
       <label
         for="my-drawer-3"
